@@ -1,0 +1,42 @@
+name: Publish Tarangita Portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tarangita-portfolio-github-pages.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Unpack portfolio site
+        run: |
+          test -s tarangita-portfolio-github-pages.zip
+          mkdir -p _site
+          unzip -q tarangita-portfolio-github-pages.zip -d _site
+          test -f _site/index.html
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
