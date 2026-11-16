@@ -197,7 +197,7 @@
       "title": "NALI, 2025",
       "description": "Adobe Photoshop",
       "type": "image/png",
-      "name": "nightshot_v02.png",
+      "name": "NALI_SC1_SH11_new(3).png",
       "span": 12
     }
   ],
@@ -569,6 +569,13 @@
   ],
   "process-backgrounds-1793202034150-7bf289d6-0594-43be-a91c-8c631bef197a": [],
   "process-backgrounds-1793202075746-24fada81-749c-4a45-8f99-51b02b4f0340": [
+    {
+      "key": "backgrounds/1793202075746-24fada81-749c-4a45-8f99-51b02b4f0340-original",
+      "title": "NALI, 2025",
+      "description": "Adobe Photoshop",
+      "name": "nightshot_v02.png",
+      "type": "image/png"
+    },
     {
       "key": "_process/backgrounds/1793202075746-24fada81-749c-4a45-8f99-51b02b4f0340/1793808970456-29acf9ce-74a8-4718-8310-779a9349b783",
       "title": "photo_2026-11-04_11-14-21",
