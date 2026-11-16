@@ -1,21 +1,15 @@
 name: Publish Tarangita Portfolio to GitHub Pages
-
 on:
   push:
     branches: [main]
-    paths:
-      - 'tarangita-portfolio-github-pages.zip'
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: github-pages
   cancel-in-progress: false
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,20 +17,22 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Unpack portfolio site
-        run: |
-          test -s tarangita-portfolio-github-pages.zip
-          mkdir -p _site
-          unzip -q tarangita-portfolio-github-pages.zip -d _site
-          test -f _site/index.html
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          path: _site
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Restore bundled artwork
+        run: python scripts/restore-assets.py
+      - name: Build original portfolio layout
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
       - name: Deploy to Pages
         id: deployment
         uses: actions/deploy-pages@v4

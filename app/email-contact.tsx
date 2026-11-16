@@ -1,0 +1,4 @@
+'use client';
+import {useState} from 'react';
+import {Mail} from './social-icons';
+export default function EmailContact(){const [show,setShow]=useState(false),[message,setMessage]=useState('');const email='tangykrishnan@gmail.com';return <span className="email-contact"><a className="social-icon" href={'mailto:'+email} target="_top" aria-label={'Email '+email} title={email} onClick={()=>setShow(true)}><Mail/></a>{show&&<span className="email-fallback"><button className="email-dismiss" aria-label="Close email details" onClick={()=>setShow(false)}>✕</button><a href={'mailto:'+email} target="_top">{email}</a><button onClick={async()=>{try{await navigator.clipboard.writeText(email);setMessage('Email copied.')}catch{setMessage('Select and copy the address above.')}}}>Copy email</button><span role="status">{message||'If your mail app doesn’t open, copy the address.'}</span></span>}</span>}
