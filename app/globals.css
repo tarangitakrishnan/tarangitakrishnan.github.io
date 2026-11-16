@@ -496,3 +496,6 @@ body:has(.film-project){background:#0c1b23;color:#fef9e6;--line:#fef9e655;--pape
 .process-page .upload,.process-page .section-heading>a,.process-page .process-grid .subtle,.process-page .process-remove{display:none}
 
 .collection-page[data-category="character-design"]:not(.process-page)>.works{padding-top:56px}
+
+/* Show homepage artwork without text overlays or caption shading. */
+#disciplines .art::after{content:none}
