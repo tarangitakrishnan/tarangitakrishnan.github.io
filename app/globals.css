@@ -494,3 +494,5 @@ body:has(.film-project){background:#0c1b23;color:#fef9e6;--line:#fef9e655;--pape
 
 .film-gif-grid video{display:block;width:100%;height:auto}
 .process-page .upload,.process-page .section-heading>a,.process-page .process-grid .subtle,.process-page .process-remove{display:none}
+
+.collection-page[data-category="character-design"]:not(.process-page)>.works{margin-top:56px}
